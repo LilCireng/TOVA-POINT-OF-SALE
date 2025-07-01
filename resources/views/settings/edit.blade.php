@@ -4,7 +4,6 @@
 
 @section('content')
 
-{{-- ✨ Style dipindahkan ke sini untuk memastikan berhasil dimuat ✨ --}}
 <style>
     .settings-container {
         max-width: 600px;
@@ -113,14 +112,12 @@
 </style>
 
 <div class="settings-container">
-    {{-- Notifikasi Sukses --}}
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
 
-    {{-- Notifikasi Error --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul style="margin: 0; padding-left: 20px;">

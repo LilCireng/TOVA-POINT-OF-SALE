@@ -9,19 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
-    /**
-     * ===============================================================
-     * INI ADALAH BARIS PENTING YANG HILANG.
-     * Baris ini menghubungkan Model 'Product' dengan tabel 'barangs'.
-     * ===============================================================
-     */
     protected $table = 'barangs';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'nama',
         'id_kategori',

@@ -20,7 +20,7 @@
         }
         .sidebar {
             width: 250px;
-            background-color: #800000; 
+            background-color: #800000;
             color: #fff;
             height: 100vh;
             position: fixed;
@@ -60,7 +60,6 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            /* ✨ Tambahkan ini untuk posisi pseudo-element */
             position: relative;
         }
         .sidebar a i {
@@ -70,9 +69,8 @@
             background-color: #9a0000;
         }
 
-        /* ✨ PENANDA MENU AKTIF DIUBAH DI SINI ✨ */
         .nav-menu a.active {
-            color: #ffadad; /* Warna teks & ikon menjadi merah muda cerah */
+            color: #ffadad;
         }
 
         .nav-menu a.active::before {
@@ -82,15 +80,14 @@
             top: 0;
             height: 100%;
             width: 4px;
-            background-color: #ffadad; /* Warna garis vertikal */
+            background-color: #ffadad;
             border-top-right-radius: 4px;
             border-bottom-right-radius: 4px;
         }
 
         .main-content {
-            /* Sesuaikan margin-left saat sidebar tertutup/terbuka */
-            margin-left: 60px; 
-            width: calc(100% - 60px); 
+            margin-left: 60px;
+            width: calc(100% - 60px);
             padding: 20px;
             flex: 1;
             transition: margin-left 0.3s ease, width 0.3s ease;
@@ -112,59 +109,59 @@
             font-size: 20px;
             cursor: pointer;
         }
-        .profile-container { 
-            position: relative; 
-            flex-shrink: 0; 
+        .profile-container {
+            position: relative;
+            flex-shrink: 0;
         }
-        .user-profile-block { 
-            display: flex; 
-            align-items: center; 
-            padding: 15px 20px; 
-            cursor: pointer; 
+        .user-profile-block {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: pointer;
             border-bottom: 1px solid #a040406c;
             background-color: #800000;
-            transition: background-color 0.2s; 
+            transition: background-color 0.2s;
         }
-        .user-profile-block:hover { 
+        .user-profile-block:hover {
             background-color: #9a0000;
         }
-        .sidebar.closed .user-profile-block { 
-            justify-content: center; 
+        .sidebar.closed .user-profile-block {
+            justify-content: center;
         }
-        .user-profile-block .avatar { 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            margin-right: 12px; 
+        .user-profile-block .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
         }
-        .sidebar.closed .user-profile-block .avatar { 
-            margin-right: 0; 
+        .sidebar.closed .user-profile-block .avatar {
+            margin-right: 0;
         }
-        .user-profile-block .user-info { 
-            display: flex; 
-            flex-direction: column; 
-            flex-grow: 1; 
+        .user-profile-block .user-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
-        .user-profile-block .user-role { 
-            font-size: 14px; 
-            font-weight: bold; 
-            line-height: 1.2; 
+        .user-profile-block .user-role {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.2;
         }
-        .user-profile-block .user-email { 
-            font-size: 12px; 
-            color: #ccc; 
-            line-height: 1.2; 
+        .user-profile-block .user-email {
+            font-size: 12px;
+            color: #ccc;
+            line-height: 1.2;
         }
-        .user-profile-block .chevron { 
-            font-size: 12px; 
-            color: #ccc; 
-            transition: transform 0.2s; 
+        .user-profile-block .chevron {
+            font-size: 12px;
+            color: #ccc;
+            transition: transform 0.2s;
         }
-        .user-profile-block.open .chevron { 
-            transform: rotate(180deg); 
+        .user-profile-block.open .chevron {
+            transform: rotate(180deg);
         }
-        
+
         .profile-dropdown {
             display: none;
             list-style: none;
@@ -192,28 +189,28 @@
             display: block;
         }
 
-        .profile-dropdown a, .profile-dropdown button { 
-            display: flex; 
-            align-items: center; 
-            padding: 10px 20px; 
-            color: white; 
-            text-decoration: none; 
-            background: none; 
-            border: none; 
-            width: 100%; 
-            text-align: left; 
-            cursor: pointer; 
-            font-family: 'Segoe UI', sans-serif; 
-            font-size: 14px; 
+        .profile-dropdown a, .profile-dropdown button {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
         }
-        .profile-dropdown a:hover, .profile-dropdown button:hover { 
+        .profile-dropdown a:hover, .profile-dropdown button:hover {
             background-color: #b00000;
         }
-        .profile-dropdown form { 
-            margin: 0; 
+        .profile-dropdown form {
+            margin: 0;
         }
-        .nav-menu { 
-            overflow-y: auto; 
+        .nav-menu {
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -251,7 +248,6 @@
         </div>
         @endauth
         <div class="nav-menu">
-            {{-- ✨ KELAS 'active' DITAMBAHKAN SECARA DINAMIS DI SINI ✨ --}}
             <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></a>
             <a href="{{ route('supplier.index') }}" class="{{ request()->routeIs('supplier.*') ? 'active' : '' }}"><i class="fa-solid fa-truck"></i> <span>Data Supplier</span></a>
             <a href="{{ route('barang.index') }}" class="{{ request()->routeIs('barang.*') ? 'active' : '' }}"><i class="fa-solid fa-box"></i> <span>Data Barang</span></a>
@@ -280,7 +276,7 @@
                 sidebar.classList.add('no-transition');
                 mainContent.classList.add('sidebar-open');
                 sidebar.classList.remove('closed');
-                sidebar.offsetHeight; 
+                sidebar.offsetHeight;
                 sidebar.classList.remove('no-transition');
             } else {
                  mainContent.classList.remove('sidebar-open');

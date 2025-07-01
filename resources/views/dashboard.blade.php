@@ -5,7 +5,6 @@
 @section('content')
 <div class="container py-4">
 
-    {{-- HEADER & FILTER --}}
     <div class="flex flex-col md:flex-row justify-between items-center mb-8">
         <h2 class="mb-4 md:mb-0 font-bold text-2xl text-gray-800">Ringkasan Penjualan</h2>
         <div class="filter-container">
@@ -20,9 +19,7 @@
         </div>
     </div>
 
-    {{-- KARTU RINGKASAN --}}
     <div class="summary-card-grid mb-6">
-        <!-- Card Pendapatan -->
         <div class="summary-card" style="background: linear-gradient(135deg, #EF4444, #F87171);">
             <div class="card-content-wrapper">
                 <div>
@@ -34,7 +31,6 @@
                 </div>
             </div>
         </div>
-        <!-- Card Pengeluaran -->
         <div class="summary-card" style="background: linear-gradient(135deg, #22C55E, #4ADE80);">
              <div class="card-content-wrapper">
                 <div>
@@ -46,7 +42,6 @@
                 </div>
             </div>
         </div>
-        <!-- Card Transaksi -->
         <div class="summary-card" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">
              <div class="card-content-wrapper">
                 <div>
@@ -58,7 +53,6 @@
                 </div>
             </div>
         </div>
-        <!-- Card Total Produk -->
         <div class="summary-card" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
              <div class="card-content-wrapper">
                 <div>
@@ -72,22 +66,18 @@
         </div>
     </div>
 
-    {{-- GRAFIK & AKTIVITAS DALAM SATU KARTU --}}
     <div class="main-chart-card">
         <div class="main-chart-grid">
-            {{-- Kolom Grafik --}}
             <div class="chart-column">
                 <h3 class="font-semibold text-gray-800 mb-2">Grafik Penjualan ({{ $titlePeriod }})</h3>
                 <div class="relative" style="height:320px;">
                     <canvas id="penjualanChart"></canvas> 
                 </div>
             </div>
-            {{-- Kolom Aktivitas --}}
             <div class="activity-column">
                 <h3 class="font-semibold text-gray-800 mb-2">Aktivitas Terakhir</h3>
                 <ul class="space-y-3 text-sm">
                     @forelse($logAktivitas as $log)
-                        {{-- Atribut key yang salah telah dihapus dari sini --}}
                         <li class="flex justify-between items-center border-b pb-2">
                             <div>
                                 <span>{{ $log['keterangan'] }}</span>

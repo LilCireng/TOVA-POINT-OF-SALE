@@ -44,7 +44,6 @@
                 @error('kategori')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
-            {{-- DIUBAH: Memisahkan input harga menjadi dua --}}
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                 <div class="form-group">
                     <label for="harga_beli">Harga Beli</label>
@@ -71,6 +70,5 @@
             </div>
         </form>
     </div>
-    {{-- CSS tidak diubah --}}
     <style>.is-invalid { border-color: #e53e3e !important; }.invalid-feedback { color: #e53e3e; font-size: 0.875rem; margin-top: 0.25rem; }.radio-group-container.is-invalid { border: 1px solid #e53e3e; border-radius: 6px; padding: 0.5rem; }</style>
 @endsection

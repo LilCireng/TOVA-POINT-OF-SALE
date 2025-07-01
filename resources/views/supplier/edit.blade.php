@@ -40,9 +40,4 @@
             </div>
 
             <div class="btn-container">
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Perbarui</button>
-                <a href="{{ route('supplier.index') }}" class="btn btn-secondary"><i class="fa-solid fa-times"></i> Batal</a>
-            </div>
-        </form>
-    </div>
-@endsection
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-

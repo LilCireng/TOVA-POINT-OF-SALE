@@ -13,7 +13,6 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // 1. Tentukan Periode Tanggal dari input
         $period = $request->input('period', now()->subDays(6)->format('Y-m-d') . '_' . now()->format('Y-m-d'));
         $dates = explode('_', $period);
         
@@ -31,17 +30,14 @@ class DashboardController extends Controller
             $titlePeriod = $startDate->format('d M Y') . ' - ' . $endDate->format('d M Y');
         }
 
-        // 2. Ambil Data Transaksi Sesuai Periode
         $penjualan = Penjualan::whereBetween('created_at', [$startDate, $endDate])->get();
         $pembelian = Pembelian::whereBetween('created_at', [$startDate, $endDate])->get();
 
-        // 3. Hitung Data untuk Kartu Ringkasan
         $totalPendapatan = $penjualan->sum('total_harga');
         $totalPengeluaran = $pembelian->sum('total_harga');
         $totalTransaksi = $penjualan->count();
         $totalProduk = Barang::count();
 
-        // 4. Proses Data untuk Grafik
         $dateRange = collect();
         for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
             $dateRange->push($date->copy());
@@ -51,10 +47,8 @@ class DashboardController extends Controller
         $penjualanHarian = $penjualan->groupBy(fn ($p) => Carbon::parse($p->created_at)->format('Y-m-d'));
         $chartData = $dateRange->map(fn ($date) => $penjualanHarian->get($date->format('Y-m-d'), collect())->sum('total_harga'));
 
-        // 5. Proses Log Aktivitas Terakhir
         $logAktivitas = $this->getLogAktivitas();
 
-        // 6. Kirim Semua Data ke View
         return view('dashboard', compact(
             'totalPendapatan', 'totalPengeluaran', 'totalTransaksi', 'totalProduk',
             'logAktivitas', 'chartLabels', 'chartData', 'period', 'titlePeriod',
@@ -82,7 +76,6 @@ class DashboardController extends Controller
             ];
         });
 
-        // ✨ PERBAIKAN FINAL: Menggunakan concat() bukan merge() untuk menghindari error ✨
         return $penjualanTerakhir->concat($pembelianTerakhir)
             ->sortByDesc('waktu')
             ->take(5)

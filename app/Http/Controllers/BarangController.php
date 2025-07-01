@@ -33,7 +33,6 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
-        // DIUBAH: Validasi untuk harga_beli dan harga_jual
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255|unique:barangs,nama',
             'kategori' => 'required|string',
@@ -44,7 +43,6 @@ class BarangController extends Controller
 
         $kategori = Kategori::firstOrCreate(['nama_kategori' => $validatedData['kategori']]);
 
-        // DIUBAH: Menyimpan harga_beli dan harga_jual
         Barang::create([
             'nama' => $validatedData['nama'],
             'id_kategori' => $kategori->id,
@@ -58,13 +56,11 @@ class BarangController extends Controller
 
     public function edit(Barang $barang)
     {
-        // Controller 'edit' tidak perlu diubah karena view-nya sudah kita perbaiki
         return view('barang.edit', compact('barang'));
     }
 
     public function update(Request $request, Barang $barang)
     {
-        // DIUBAH: Validasi untuk harga_beli dan harga_jual
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255|unique:barangs,nama,' . $barang->id,
             'kategori' => 'required|string',
@@ -75,7 +71,6 @@ class BarangController extends Controller
 
         $kategori = Kategori::firstOrCreate(['nama_kategori' => $validatedData['kategori']]);
 
-        // DIUBAH: Mengupdate harga_beli dan harga_jual
         $barang->update([
             'nama' => $validatedData['nama'],
             'id_kategori' => $kategori->id,

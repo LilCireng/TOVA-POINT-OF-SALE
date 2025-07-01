@@ -21,18 +21,8 @@ class PenjualanController extends Controller
         return view('penjualan.index', compact('penjualans'));
     }
 
-    /**
-     * DITAMBAHKAN: Metode untuk menampilkan detail satu transaksi.
-     * Method ini akan dipanggil saat Anda mengklik tombol "Detail".
-     *
-     * @param  \App\Models\Penjualan  $penjualan
-     * @return \Illuminate\Http\Response
-     */
     public function show(Penjualan $penjualan)
     {
-        // Eager load relasi yang dibutuhkan untuk halaman detail.
-        // 'details.barang' akan mengambil detail penjualan DAN produk terkait.
-        // 'user' untuk mengambil data kasir.
         $penjualan->load(['details.barang', 'user']);
 
         return view('penjualan.show', compact('penjualan'));

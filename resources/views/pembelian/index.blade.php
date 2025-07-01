@@ -3,7 +3,6 @@
 
 @section('content')
 
-{{-- Header Halaman --}}
 <div class="page-header">
     <h1 class="page-title"><i class="fa-solid fa-clock-rotate-left"></i> 
         Data Pembelian
@@ -16,7 +15,6 @@
     </a>
 </div>
 
-{{-- Card untuk membungkus tabel --}}
 <div class="card">
     <div class="table-responsive">
         <table class="table-custom">
@@ -32,10 +30,9 @@
                 @forelse($pembelians as $pembelian)
                     <tr>
                         <td>
-                            {{-- Nomor faktur dibuat sebagai link --}}
                             <a href="#" class="link-primary">{{ $pembelian->no_faktur }}</a>
                         </td>
-                        <td>{{ \Carbon\Carbon::parse($pembelian->tanggal)->isoFormat('D MMM YYYY, HH:mm') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($pembelian->tanggal)->isoFormat('D MMMM YYYY, HH:mm') }}</td>
                         <td>{{ $pembelian->supplier->nama }}</td>
                         <td>Rp{{ number_format($pembelian->total, 0, ',', '.') }}</td>
                     </tr>
@@ -53,7 +50,6 @@
     </div>
 </div>
 
-{{-- CSS Kustom untuk meniru tampilan --}}
 <style>
     .page-header {
         display: flex;
@@ -62,7 +58,7 @@
         margin-bottom: 1.5rem;
     }
     .page-title {
-        font-size: 1.875rem; /* 30px */
+        font-size: 1.875rem;
         font-weight: 700;
         color: #1f2937;
     }
@@ -70,22 +66,22 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0.625rem 1.25rem; /* 10px 20px */
+        padding: 0.625rem 1.25rem;
         border: 1px solid transparent;
-        font-size: 0.875rem; /* 14px */
+        font-size: 0.875rem;
         font-weight: 500;
-        border-radius: 0.5rem; /* 8px */
+        border-radius: 0.5rem;
         text-decoration: none;
         cursor: pointer;
         transition: background-color 0.2s;
     }
     .btn-primary {
         color: #ffffff;
-        background-color: #4f46e5; /* Indigo-600 */
+        background-color: #4f46e5;
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     }
     .btn-primary:hover {
-        background-color: #4338ca; /* Indigo-700 */
+        background-color: #4338ca;
     }
     .btn-action {
         display: inline-flex;
@@ -98,8 +94,8 @@
         color: #3730a3;
     }
     .btn svg {
-        width: 1.25rem; /* 20px */
-        height: 1.25rem; /* 20px */
+        width: 1.25rem;
+        height: 1.25rem;
         margin-right: 0.5rem;
     }
     .card {
@@ -116,19 +112,19 @@
         border-collapse: collapse;
     }
     .table-custom th, .table-custom td {
-        padding: 0.75rem 1.5rem; /* 12px 24px */
+        padding: 0.75rem 1.5rem;
         white-space: nowrap;
         font-size: 0.875rem;
     }
     .table-custom thead {
-        background-color: #f9fafb; /* Gray-50 */
-        border-bottom: 1px solid #e5e7eb; /* Gray-200 */
+        background-color: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
     }
     .table-custom th {
         text-align: left;
         font-weight: 500;
-        color: #6b7280; /* Gray-500 */
-        font-size: 0.75rem; /* 12px */
+        color: #6b7280;
+        font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
@@ -142,7 +138,7 @@
         background-color: #f9fafb;
     }
     .table-custom td {
-        color: #374151; /* Gray-700 */
+        color: #374151;
     }
     .link-primary {
         color: #4f46e5;

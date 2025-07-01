@@ -2,25 +2,15 @@
 @section('title', 'Daftar Supplier')
 
 @section('content')
-    {{-- ================================================================= --}}
-    {{-- BAGIAN YANG DIUBAH --}}
-    {{-- ================================================================= --}}
-
-    {{-- Judul Halaman --}}
     <h1 class="h3 mb-3"><i class="fa-solid fa-truck"></i>
     Manajemen Supplier
 </h1>
 
-    {{-- Tombol Tambah Supplier di baris baru --}}
     <div class="mb-4">
         <a href="#" onclick="document.getElementById('modalSupplier').style.display='flex'" class="btn btn-primary">
             <i class="fa-solid fa-plus"></i> Tambah Supplier Baru
         </a>
     </div>
-
-    {{-- ================================================================= --}}
-    {{-- SISA KODE TETAP SAMA --}}
-    {{-- ================================================================= --}}
 
     <div class="table-container">
         <table>
@@ -61,7 +51,6 @@
         </table>
     </div>
 
-    <!-- Modal Tambah Supplier -->
     <div id="modalSupplier" style="display: none; position: fixed; top: 0; left: 0;
             width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center;">
         <div style="background: white; padding: 20px; width: 400px; border-radius: 8px;">

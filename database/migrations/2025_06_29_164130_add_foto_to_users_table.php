@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('foto')->nullable()->after('email'); // letakkan setelah email
+            $table->string('foto')->nullable()->after('email'); 
         });
     }
 

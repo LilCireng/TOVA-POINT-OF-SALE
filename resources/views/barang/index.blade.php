@@ -2,29 +2,16 @@
 @section('title', 'Daftar Barang')
 
 @section('content')
-{{-- ================================================================= --}}
-{{-- BAGIAN YANG DIUBAH --}}
-{{-- ================================================================= --}}
-
-{{-- 1. Hapus <div class="page-header"> --}}
-
-{{-- 2. Atur Judul Halaman secara terpisah --}}
 <h1 class="h3 mb-3"><i class="fa-solid fa-box"></i>
                         Daftar Barang
 </h1>
 
-{{-- 3. Letakkan tombol di baris baru di bawah judul --}}
 <div class="mb-4">
     <a href="{{ route('barang.create') }}" class="btn btn-primary">
         <i class="fa-solid fa-plus"></i> Tambah Barang Baru
     </a>
 </div>
 
-{{-- ================================================================= --}}
-{{-- SISA KODE TETAP SAMA --}}
-{{-- ================================================================= --}}
-
-{{-- Filter Form --}}
 <div class="form-container" style="margin-bottom: 1.5rem;">
     <form action="{{ route('barang.index') }}" method="GET">
         <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; align-items: end;">
@@ -50,7 +37,6 @@
     </form>
 </div>
 
-{{-- Tabel Data Barang --}}
 <div class="table-container">
     <table>
         <thead>

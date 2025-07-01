@@ -2,7 +2,6 @@
 @section('title', 'Transaksi Penjualan (POS)')
 
 @push('styles')
-{{-- Style untuk halaman POS --}}
 <style>
     .pos-container { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
     @media (min-width: 1024px) { .pos-container { grid-template-columns: 2fr 1fr; } }
@@ -17,7 +16,7 @@
         border-radius: 0 0 0.5rem 0.5rem;
         background: white;
         z-index: 100;
-        display: none; /* Sembunyi secara default */
+        display: none;
     }
     .search-result-item {
         padding: 0.75rem 1rem;
@@ -34,7 +33,6 @@
     <h1><i class="fa-solid fa-cash-register"></i> Point of Sale</h1>
 </div>
 
-{{-- Tampilkan notifikasi jika ada --}}
 @if (session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
@@ -43,7 +41,6 @@
 @endif
 
 <div class="pos-container">
-    {{-- Kolom Kiri --}}
     <div class="form-container">
         <div class="form-group search-section">
             <label for="product-search">Cari Barang</label>
@@ -75,7 +72,6 @@
         </div>
     </div>
 
-    {{-- Kolom Kanan --}}
     <div class="form-container">
         <h3><i class="fa-solid fa-receipt"></i> Detail Pembayaran</h3>
         <form id="form-penjualan" action="{{ route('penjualan.store') }}" method="POST">
@@ -98,16 +94,13 @@
 @endsection
 
 @push('scripts')
-{{-- Memuat jQuery untuk AJAX --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// ✨ LOGIKA JAVASCRIPT DIPERBAIKI TOTAL DENGAN JQUERY ✨
 $(document).ready(function() {
-    let cart = {}; // { id: { data... , jumlah: X } }
+    let cart = {}; 
     let searchTimeout;
-    let latestSearchResults = []; // Menyimpan hasil pencarian terakhir
+    let latestSearchResults = []; 
 
-    // --- FUNGSI UTAMA ---
     const renderCart = () => {
         const cartBody = $('#cart-body');
         const paymentBtn = $('#process-payment-btn');
@@ -140,7 +133,6 @@ $(document).ready(function() {
         $('#grand-total').text(`Rp ${grandTotal.toLocaleString('id-ID')}`);
     };
 
-    // --- EVENT LISTENERS ---
     $('#product-search').on('keyup', function() {
         clearTimeout(searchTimeout);
         const query = $(this).val();
@@ -157,10 +149,9 @@ $(document).ready(function() {
                 data: { query: query },
                 success: function(data) {
                     resultsContainer.empty();
-                    latestSearchResults = data; // Simpan hasil ke variabel
+                    latestSearchResults = data;
                     if (data.length) {
                         data.forEach(item => {
-                            // ✨ Hanya menyimpan ID pada elemen HTML ✨
                             const itemDiv = $(`<div class="search-result-item" data-id="${item.id}"></div>`);
                             itemDiv.html(`<span>${item.nama}</span> <small class="text-muted">(Stok: ${item.stok})</small>`);
                             resultsContainer.append(itemDiv);
@@ -174,10 +165,8 @@ $(document).ready(function() {
         }, 300);
     });
 
-    // ✨ EVENT KLIK YANG DIPERBAIKI MENGGUNAKAN JQUERY EVENT DELEGATION ✨
     $(document).on('click', '.search-result-item', function() {
         const productId = $(this).data('id');
-        // Cari produk lengkap dari hasil pencarian yang disimpan
         const product = latestSearchResults.find(p => p.id === productId);
 
         if (!product) {

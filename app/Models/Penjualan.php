@@ -9,27 +9,18 @@ class Penjualan extends Model
 {
     use HasFactory;
 
-    /**
-     * DIUBAH: Menambahkan 'nomor_invoice' agar bisa diisi secara massal
-     */
     protected $fillable = [
-        'nomor_invoice', // <-- INI YANG DITAMBAHKAN
+        'nomor_invoice', 
         'pelanggan',
         'total_harga',
         'user_id'
     ];
 
-    /**
-     * Relasi ke PenjualanDetail
-     */
     public function details()
     {
         return $this->hasMany(PenjualanDetail::class);
     }
 
-    /**
-     * Relasi ke User (Penjaga Toko/Kasir)
-     */
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -19,14 +19,12 @@
             <input type="text" id="nama" name="nama" class="form-control" value="{{ old('nama', $barang->nama) }}" required>
         </div>
         
-        {{-- DIUBAH: Menggunakan radio button agar konsisten dengan form 'create' --}}
         <div class="form-group">
             <label>Kategori</label>
             <div class="radio-group-container">
                 @php $kategoriOptions = ['Device', 'Catridge', 'Liquid', 'Coil', 'Kapas', 'Baterai']; @endphp
                 @foreach($kategoriOptions as $kategoriOption)
                 <div class="radio-option">
-                    {{-- Cek apakah kategori barang saat ini sama dengan opsi --}}
                     <input type="radio" id="kategori_{{ strtolower($kategoriOption) }}" name="kategori" value="{{ $kategoriOption }}" {{ old('kategori', $barang->kategori->nama_kategori) == $kategoriOption ? 'checked' : '' }} required>
                     <label for="kategori_{{ strtolower($kategoriOption) }}">{{ $kategoriOption }}</label>
                 </div>
@@ -34,7 +32,6 @@
             </div>
         </div>
 
-        {{-- DIUBAH: Memisahkan input harga menjadi dua --}}
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
             <div class="form-group">
                 <label for="harga_beli">Harga Beli (Biaya)</label>

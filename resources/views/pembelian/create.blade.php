@@ -14,13 +14,11 @@
     </a>
 </div>
 
-{{-- Form utama kita bagi menjadi dua kolom seperti di POS --}}
 <div class="pembelian-container">
 
     <div class="form-container" style="margin-bottom: 1.5rem;">
         <form id="pembelian-form" action="{{ route('pembelian.store') }}" method="POST">
             @csrf
-            {{-- Bagian ini akan menyimpan data detail pembelian (diisi oleh JavaScript) --}}
             <input type="hidden" name="items" id="items-input">
             <input type="hidden" name="total" id="total-input">
 
@@ -47,11 +45,9 @@
 
         <hr style="margin: 2rem 0;">
 
-        {{-- Form Pencarian Produk --}}
         <div class="form-group">
             <label for="search-produk">Cari Produk</label>
             <div style="display: flex; gap: 0.5rem;">
-                {{-- Asumsi Anda punya data produk yang dikirim dari controller --}}
                 <select id="search-produk" class="form-control">
                     <option value="">-- Pilih Produk --</option>
                     @foreach($products as $product)
@@ -79,7 +75,6 @@
                     </tr>
                 </thead>
                 <tbody id="pembelian-items">
-                    {{-- Item akan ditambahkan di sini oleh JavaScript --}}
                     <tr>
                         <td colspan="5" style="text-align: center; color: #888;">Belum ada barang yang ditambahkan.</td>
                     </tr>
@@ -99,15 +94,13 @@
 
 </div>
 
-{{-- Tambahkan sedikit CSS untuk layout 2 kolom --}}
 <style>
     .pembelian-container {
         display: grid;
-        grid-template-columns: 1fr; /* Default 1 kolom untuk mobile */
+        grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
-    /* Layout 2 kolom untuk layar lebih besar */
     @media (min-width: 992px) {
         .pembelian-container {
             grid-template-columns: 1fr 2fr;
@@ -134,8 +127,6 @@
     }
 </style>
 
-
-{{-- JavaScript untuk Interaktivitas --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const addItemBtn = document.getElementById('add-item-btn');
@@ -145,7 +136,7 @@
         const itemsInput = document.getElementById('items-input');
         const totalInput = document.getElementById('total-input');
 
-        let items = []; // Array untuk menyimpan data item
+        let items = [];
         let itemCounter = 0;
 
         addItemBtn.addEventListener('click', function () {
@@ -157,7 +148,6 @@
 
             const productId = selectedOption.value;
             
-            // Cek jika produk sudah ada di daftar
             if (items.find(item => item.id == productId)) {
                 alert('Produk ini sudah ada di dalam daftar.');
                 return;
@@ -166,7 +156,6 @@
             const productName = selectedOption.dataset.nama;
             const productPrice = parseFloat(selectedOption.dataset.harga_beli) || 0;
             
-            // Tambahkan ke array
             itemCounter++;
             const newItem = {
                 id: productId,
@@ -183,7 +172,6 @@
         });
 
         function renderItems() {
-            // Kosongkan tabel
             if (items.length === 0) {
                  pembelianItemsTbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #888;">Belum ada barang yang ditambahkan.</td></tr>';
             } else {
@@ -209,7 +197,6 @@
                 item.subtotal = item.jumlah * item.harga_beli;
                 grandTotal += item.subtotal;
 
-                // Update tampilan subtotal di baris tabel
                 const row = document.getElementById(item.row_id);
                 if (row) {
                     row.querySelector('.item-subtotal').textContent = `Rp ${item.subtotal.toLocaleString('id-ID')}`;
@@ -218,12 +205,10 @@
 
             grandTotalEl.textContent = `Rp ${grandTotal.toLocaleString('id-ID')}`;
             
-            // Update input hidden untuk form submission
             itemsInput.value = JSON.stringify(items.map(i => ({id: i.id, jumlah: i.jumlah, harga_beli: i.harga_beli})));
             totalInput.value = grandTotal;
         }
 
-        // Event listener untuk input jumlah, harga, dan tombol hapus
         pembelianItemsTbody.addEventListener('input', function(e) {
             const target = e.target;
             const productId = target.dataset.id;
@@ -246,7 +231,6 @@
                 const button = e.target.closest('.remove-item');
                 const productId = button.dataset.id;
                 
-                // Hapus item dari array
                 items = items.filter(item => item.id != productId);
                 
                 renderItems();

@@ -10,7 +10,6 @@
 </div>
 
 <div class="form-container">
-    {{-- Info Invoice --}}
     <div class="row border-bottom pb-3 mb-3">
         <div class="col-md-6">
             <p class="mb-1"><strong>No. Invoice:</strong></p>
@@ -26,7 +25,6 @@
         </div>
     </div>
 
-    {{-- Daftar Barang --}}
     <h3 class="mb-3">Daftar Barang</h3>
     <div class="table-responsive">
         <table class="table">
@@ -43,9 +41,7 @@
                 @foreach ($penjualan->details as $detail)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        {{-- DIUBAH: Menggunakan 'nama' bukan 'nama_barang' --}}
                         <td>{{ $detail->barang->nama ?? 'Barang Telah Dihapus' }}</td>
-                        {{-- DIUBAH: Menggunakan 'harga_satuan' bukan 'harga' --}}
                         <td class="text-end">Rp {{ number_format($detail->harga_satuan, 0, ',', '.') }}</td>
                         <td class="text-center">{{ $detail->jumlah }}</td>
                         <td class="text-end">Rp {{ number_format($detail->subtotal, 0, ',', '.') }}</td>
@@ -61,7 +57,6 @@
         </table>
     </div>
 
-    {{-- Tombol Aksi --}}
     <div class="text-end mt-4">
         <button class="btn btn-primary" onclick="window.print();">
             <i class="fa-solid fa-print"></i> Cetak Struk

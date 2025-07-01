@@ -6,40 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        // Perintah ini akan membuat tabel 'detail_penjualan'
         Schema::create('detail_penjualan', function (Blueprint $table) {
-            $table->id(); // Kolom ID untuk setiap baris detail
-
-            // Foreign key yang terhubung ke tabel 'penjualans'
-            // Jika data penjualan dihapus, detailnya juga ikut terhapus (cascade)
+            $table->id(); 
             $table->foreignId('penjualan_id')->constrained('penjualans')->onDelete('cascade');
-
-            // Foreign key yang terhubung ke tabel 'barangs'
-            // Jika barang dihapus, ID barang di sini akan jadi NULL (set null)
             $table->foreignId('barang_id')->nullable()->constrained('barangs')->onDelete('set null');
-
-            $table->integer('jumlah'); // Jumlah barang yang dibeli
-            $table->decimal('harga_satuan', 15, 2); // Harga barang saat transaksi
-            $table->decimal('subtotal', 15, 2); // Total harga (jumlah * harga_satuan)
-            $table->timestamps(); // Kolom created_at dan updated_at
+            $table->integer('jumlah'); 
+            $table->decimal('harga_satuan', 15, 2); 
+            $table->decimal('subtotal', 15, 2); 
+            $table->timestamps(); 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('detail_penjualan');
     }
 };
- 

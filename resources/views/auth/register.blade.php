@@ -41,9 +41,8 @@
         
         .login-card h1 { margin: 0; }
         
-        /* [BARU] Styling untuk judul utama */
         .brand-main {
-            font-family: 'Another Shabby', cursive; /* Menggunakan font dari Google Fonts */
+            font-family: 'Another Shabby', cursive;
             font-style: italic;
             font-size: 4rem;
             line-height: 1;

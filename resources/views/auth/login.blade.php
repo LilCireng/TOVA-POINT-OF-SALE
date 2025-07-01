@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-t">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TOVA Point of Sale - Login</title>
 
@@ -52,9 +52,8 @@
             margin-bottom: 2rem;
         }
 
-        /* [BARU] Styling untuk judul utama */
         .brand-main {
-            font-family: 'Another Shabby', cursive; /* Menggunakan font dari Google Fonts */
+            font-family: 'Another Shabby', cursive;
             font-style: italic;
             font-size: 4rem;
             line-height: 1;
@@ -63,7 +62,7 @@
         }
         
         .brand-subtitle {
-            font-family: 'Nunito', sans-serif; /* Font yang menarik dan bersih */
+            font-family: 'Nunito', sans-serif;
             font-weight: 600;
             font-size: 1rem;
             color: var(--grey-text);
